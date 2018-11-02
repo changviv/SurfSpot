@@ -11,12 +11,33 @@ $.ajax({
 
 
 //STORM GLASS API
+
+$(document).ready(function() {
+
+var lat = "";
+var lon = "";
+
+    $("#lat").on("click", function() {
+        lat = prompt("lattitude:")
+    });
+
+    $("#lon").on("click", function() {
+        lon = prompt("longitude:")
+    });
+    
+        $("#btn1").on("click", function() {
+
+
 $.ajax({
-    url: 'https://api.stormglass.io/point?lat=58.5&lng=17.8',
+    //url: 'https://api.stormglass.io/point?lat=58.5&lng=17.8',
+    url: "https://api.stormglass.io/point?lat=" + lat + "&lng=" + lon,
     method: "GET",
     headers: { 'Authorization': "d3cc5276-dd5b-11e8-9e1f-0242ac130004-d3cc5424-dd5b-11e8-9e1f-0242ac130004" }
 }).then(function(response) {
 	console.log(response)
-	console.log(response.hours)
+    console.log(response.hours)
+    
+    });
+});
 
 });
