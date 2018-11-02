@@ -1,6 +1,9 @@
 var google_api = google_key;
 var sg_api = stormglass;
 
+var lat = "";
+var lon = "";
+
 $.ajax({
     url: "https://maps.googleapis.com/maps/api/geocode/json?address=5000+Pacific+Coast+Hwy,+Pacifica,+CA&key=" + google_api,
     method: "GET",
@@ -12,11 +15,10 @@ $.ajax({
 
 
 //STORM GLASS API
-
 $(document).ready(function() {
 
-var lat = "";
-var lon = "";
+		var lat = "";
+		var lon = "";
 
     $("#lat").on("click", function() {
         lat = prompt("lattitude:")
@@ -30,7 +32,6 @@ var lon = "";
 
 
 		$.ajax({
-		    //url: 'https://api.stormglass.io/point?lat=58.5&lng=17.8',
 		    url: "https://api.stormglass.io/point?lat=" + lat + "&lng=" + lon,
 		    method: "GET",
 		    headers: { 'Authorization': sg_api }
