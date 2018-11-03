@@ -22,47 +22,43 @@ $(document).on("click", "#location-search", function(){
     p.addClass("selected-location");
     // push userLocation value into p tag
     p.push(userLocation);
-    
-    });
 
-var lat = "";
-var lon = "";
+// $.ajax({
+//     url: "https://maps.googleapis.com/maps/api/geocode/json?address=5000+Pacific+Coast+Hwy,+Pacifica,+CA&key=" + google_api,
+//     method: "GET",
+// }).then(function(response) {
+// 	console.log(response)
+// 	//console.log(response.results[0].geometry.location.lat)
+// 	//console.log(response.results[0].geometry.location.lng)
 
-$.ajax({
-    url: "https://maps.googleapis.com/maps/api/geocode/json?address=5000+Pacific+Coast+Hwy,+Pacifica,+CA&key=" + google_api,
-    method: "GET",
-}).then(function(response) {
-	console.log(response)
-	console.log(response.results[0].geometry.location.lat)
-	console.log(response.results[0].geometry.location.lng)
-})
 
 
 //STORM GLASS API
-$(document).ready(function() {
 
-var lat = "";
-var lon = "";
+var lat = response.results[0].geometry.location.lat;
+var lon = response.results[0].geometry.location.lng;
+console.log(lat)
+//var lat = "";
+//var lon = "";
 
 
-    $("#lat").on("click", function() {
-        lat = prompt("lattitude:")
+    // $("#lat").on("click", function() {
+    //     lat = prompt("lattitude:")
+
         
-    });
+    // });
 
-    $("#lon").on("click", function() {
-        lon = prompt("longitude:")
-    });
-
-    $("#btn1").on("click", function() {
+    // $("#lon").on("click", function() {
+    //     lon = prompt("longitude:")
+    // });
 
 
 $.ajax({
     //url: 'https://api.stormglass.io/point?lat=58.5&lng=17.8',
     url: "https://api.stormglass.io/point?lat=" + lat + "&lng=" + lon,
     method: "GET",
-    //headers: { 'Authorization': "d3cc5276-dd5b-11e8-9e1f-0242ac130004-d3cc5424-dd5b-11e8-9e1f-0242ac130004" }
-    headers: { 'Authorization': "dd5c9c48-de4f-11e8-9f7a-0242ac130004-dd5c9d4c-de4f-11e8-9f7a-0242ac130004" }
+    headers: { 'Authorization': "d3cc5276-dd5b-11e8-9e1f-0242ac130004-d3cc5424-dd5b-11e8-9e1f-0242ac130004" }
+    //headers: { 'Authorization': "dd5c9c48-de4f-11e8-9f7a-0242ac130004-dd5c9d4c-de4f-11e8-9f7a-0242ac130004" }
 }).then(function(response) {
 	//console.log(response)
     //console.log(response.hours)
@@ -92,29 +88,10 @@ $.ajax({
         //console.log(dayOneWtrTmp)
 
     var dayOneWaveHgt = dayOne[i].swellHeight[1].value;
-        //console.log(dayOneWaveHgt)
-
-    var dayOneHumidity = dayOne[i].humidity[1].value;
-        //console.log(dayOneHumidity)
-
-    var dayOneVisibility = dayOne[i].visibility[1].value;
-        //console.log(dayOneVisibility)
-
-    var dayOneWndSpd = dayOne[i].windSpeed[1].value;
-        console.log(dayOneWndSpd)
+        console.log(dayOneWaveHgt)
     }
 
-
-    
-
-    
-
-
-
-
-    //$("#airTmp").html(finalDay1AirTmp);
-
-
-		});
-	});
+        })
+    });
 });
+
