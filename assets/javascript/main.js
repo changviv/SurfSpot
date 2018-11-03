@@ -1,22 +1,49 @@
+var google_api = google_key;
+var sg_api = stormglass;
 
 // GOOGLE API
+$(document).on("click", "#location-search", function(){
+    $("#location-value").empty();
+    // do I need a "this" here to refer to the button?
+    var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=+El+Porto,+Manhattan+Beach,+CA&key=AIzaSyCqbqiyRQlrICB9lp-O0atY_4sGJ1QlAPI";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+    // up to here is ajax call + object response
+    // recorded value ex. below from API key above
+	console.log(response.results[0].geometry.location.lat);
+    console.log(response.results[0].geometry.location.lng);
+    // grab value from location search input tag & store in var userLocation
+    var userLocation = $("#location-search").val().trim();
+    // create p tag to hold user location
+    var p = $("<p>");
+    // add class to p tag
+    p.addClass("selected-location");
+    // push userLocation value into p tag
+    p.push(userLocation);
+    
+    });
+
+var lat = "";
+var lon = "";
 
 $.ajax({
-    url: "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCqbqiyRQlrICB9lp-O0atY_4sGJ1QlAPI",
+    url: "https://maps.googleapis.com/maps/api/geocode/json?address=5000+Pacific+Coast+Hwy,+Pacifica,+CA&key=" + google_api,
     method: "GET",
 }).then(function(response) {
+	console.log(response)
 	console.log(response.results[0].geometry.location.lat)
 	console.log(response.results[0].geometry.location.lng)
 })
 
 
 //STORM GLASS API
-
 $(document).ready(function() {
-
 
 var lat = "";
 var lon = "";
+
 
     $("#lat").on("click", function() {
         lat = prompt("lattitude:")
@@ -26,8 +53,8 @@ var lon = "";
     $("#lon").on("click", function() {
         lon = prompt("longitude:")
     });
-    
-        $("#btn1").on("click", function() {
+
+    $("#btn1").on("click", function() {
 
 
 $.ajax({
@@ -79,29 +106,6 @@ $.ajax({
     //$("#airTmp").html(finalDay1AirTmp);
 
 
-    
-
-
-
-
-
-
-
-    
-
-
-
-    
-    
-    
-     
-    
-        
-
-    
-        
-
-    });
-});
-
+		});
+	});
 });
