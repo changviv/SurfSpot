@@ -65,7 +65,16 @@ $.ajax({
         //console.log(dayOneWtrTmp)
 
     var dayOneWaveHgt = dayOne[i].swellHeight[1].value;
-        console.log(dayOneWaveHgt)
+        //console.log(dayOneWaveHgt)
+
+    var dayOneHumidity = dayOne[i].humidity[1].value;
+        //console.log(dayOneHumidity)
+
+    var dayOneVisibility = dayOne[i].visibility[1].value;
+        //console.log(dayOneVisibility)
+
+    var dayOneWndSpd = dayOne[i].windSpeed[1].value;
+        console.log(dayOneWndSpd)
     }
 
 
