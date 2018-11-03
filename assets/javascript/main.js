@@ -82,33 +82,28 @@ $.ajax({
 
     var dayThree = optimalResponse.slice(48,72);
         console.log(dayThree)
-        
-    //var dayOneAirTmp = dayOne[0].airTemperature[1].value;
+    
+    for (var i = 0; i < 24; i++) {
+
+    var dayOneAirTmp = dayOne[i].airTemperature[1].value;
         //console.log(dayOneAirTmp)
 
-    var DayOneAirTmp = []
+    var dayOneWtrTmp = dayOne[i].waterTemperature[1].value;
+        //console.log(dayOneWtrTmp)
 
-    Object.keys(dayOne).forEach(function(key) {
-        //get the value of name
-        var val = dayOne[key]["airTemperature"];
-        //push the name string in the array
-        DayOneAirTmp.push(val);
-      });
-        console.log(DayOneAirTmp);
+    var dayOneWaveHgt = dayOne[i].swellHeight[1].value;
+        console.log(dayOneWaveHgt)
+    }
 
-    var finalDay1AirTmp = []
 
-    Object.keys(DayOneAirTmp).forEach(function(key) {
-        //get the value of name
-        var val = DayOneAirTmp[key]["1"];
-        //push the name string in the array
-        finalDay1AirTmp.push(val);
-      });
-        console.log(finalDay1AirTmp)
+    
+
+    
 
 
 
-    $("#airTmp").html(finalDay1AirTmp);
+
+    //$("#airTmp").html(finalDay1AirTmp);
 
 
 		});
