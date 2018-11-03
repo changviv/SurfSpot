@@ -5,39 +5,35 @@ var sg_api = stormglass;
 $(document).on("click", "#location-search", function(){
     $("#location-value").empty();
     // do I need a "this" here to refer to the button?
-    var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=+El+Porto,+Manhattan+Beach,+CA&key=AIzaSyCqbqiyRQlrICB9lp-O0atY_4sGJ1QlAPI";
+    var search = $("#location-input").val().trim();
+    search = search.split(" ");
+    search = search.join("+")
+    console.log(search)
+    var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + search + "&key=" + google_api;
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response) {
     // up to here is ajax call + object response
     // recorded value ex. below from API key above
-	console.log(response.results[0].geometry.location.lat);
+		console.log(response.results[0].geometry.location.lat);
     console.log(response.results[0].geometry.location.lng);
     // grab value from location search input tag & store in var userLocation
-    var userLocation = $("#location-search").val().trim();
+
     // create p tag to hold user location
     var p = $("<p>");
     // add class to p tag
-    p.addClass("selected-location");
+    p.text(search);
+    console.log(p)
     // push userLocation value into p tag
-    p.push(userLocation);
-
-// $.ajax({
-//     url: "https://maps.googleapis.com/maps/api/geocode/json?address=5000+Pacific+Coast+Hwy,+Pacifica,+CA&key=" + google_api,
-//     method: "GET",
-// }).then(function(response) {
-// 	console.log(response)
-// 	//console.log(response.results[0].geometry.location.lat)
-// 	//console.log(response.results[0].geometry.location.lng)
-
+    $("#surf-results").append(p);
 
 
 //STORM GLASS API
 
 var lat = response.results[0].geometry.location.lat;
 var lon = response.results[0].geometry.location.lng;
-console.log(lat)
+console.log("LAT: " + lat)
 //var lat = "";
 //var lon = "";
 
@@ -45,7 +41,7 @@ console.log(lat)
     // $("#lat").on("click", function() {
     //     lat = prompt("lattitude:")
 
-        
+
     // });
 
     // $("#lon").on("click", function() {
@@ -63,22 +59,22 @@ $.ajax({
 	//console.log(response)
     //console.log(response.hours)
     //console.log(response.hours[40].waterTemperature[1].value)
-    
+
 
 
     var optimalResponse = response.hours.slice(0,72);
         //console.log(optimalResponse[50].waterTemperature[1].value)
-        console.log(optimalResponse)
+        console.log("RESPONSE", optimalResponse)
 
     var dayOne = optimalResponse.slice(0,24);
-        console.log(dayOne)
+        console.log("DAYS 1: ",  dayOne)
 
     var dayTwo = optimalResponse.slice(24,48);
-        console.log(dayTwo)
+        console.log("DAYS 2: ", dayTwo)
 
     var dayThree = optimalResponse.slice(48,72);
-        console.log(dayThree)
-    
+        console.log("DAYS 3: ", dayThree)
+
     for (var i = 0; i < 24; i++) {
 
     var dayOneAirTmp = dayOne[i].airTemperature[1].value;
@@ -88,10 +84,9 @@ $.ajax({
         //console.log(dayOneWtrTmp)
 
     var dayOneWaveHgt = dayOne[i].swellHeight[1].value;
-        console.log(dayOneWaveHgt)
+        console.log("DAy One Wave HEIGHT: " + dayOneWaveHgt)
     }
 
         })
     });
 });
-
