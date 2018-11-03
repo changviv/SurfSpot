@@ -1,4 +1,3 @@
-
 var google_api = google_key;
 var sg_api = stormglass;
 
@@ -23,12 +22,6 @@ $(document).on("click", "#location-search", function(){
     p.addClass("selected-location");
     // push userLocation value into p tag
     p.push(userLocation);
-    
-    
-
-
-
-
 
 // $.ajax({
 //     url: "https://maps.googleapis.com/maps/api/geocode/json?address=5000+Pacific+Coast+Hwy,+Pacifica,+CA&key=" + google_api,
@@ -51,14 +44,13 @@ console.log(lat)
 
     // $("#lat").on("click", function() {
     //     lat = prompt("lattitude:")
+
         
     // });
 
     // $("#lon").on("click", function() {
     //     lon = prompt("longitude:")
     // });
-
-    
 
 
 $.ajax({
@@ -99,8 +91,7 @@ $.ajax({
         console.log(dayOneWaveHgt)
     }
 
-
-
         })
     });
 });
+
