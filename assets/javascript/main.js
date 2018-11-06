@@ -104,15 +104,15 @@ $(document).on("click", "#location-search", function(event){
             var dayOnePrecipitation = dayOne[i].precipitation[1].value;
                 //console.log(dayOnePrecipitation)
 
-
-                //console.log("Wind Direction: " ,dayOneWndDir);      
+            dayOneWndDir = CDTD(dayOneWndDir);
+                //console.log("Wind Direction: " ,dayOneWndDir);
             dayOneWvDir = CDTD(dayOneWvDir);
                 //console.log(dayOneWvDir)
 
 
             var dayTwoAirTmp = dayTwo[i].airTemperature[1].value;
                 //console.log(dayTwoAirTmp)
-            
+
             var dayTwoWtrTmp = dayTwo[i].waterTemperature[1].value;
                 //console.log(dayTwoWtrTmp)
 
@@ -143,7 +143,7 @@ $(document).on("click", "#location-search", function(event){
 
             var dayThreeAirTmp = dayThree[i].airTemperature[1].value;
                 //console.log(dayThreeAirTmp)
-            
+
             var dayThreeWtrTmp = dayThree[i].waterTemperature[1].value;
                 //console.log(dayThreeWtrTmp)
 
@@ -180,7 +180,7 @@ $(document).on("click", "#location-search", function(event){
         if (x > 5 && x < 85) {
             x = "NE"
         }
-        else if (x < 175 && x > 95) { 
+        else if (x < 175 && x > 95) {
             x = "SE"
         }
         else if (x > 185 && x < 265) {
@@ -202,7 +202,7 @@ $(document).on("click", "#location-search", function(event){
             x = "W"
         }
 
-        return x 
+        return x
     }
 
 
