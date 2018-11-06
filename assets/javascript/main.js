@@ -1,48 +1,59 @@
 var google_api = google_key;
 var sg_api = stormglass;
 
+// hide surf results when started
+$("#surf-results").hide();
+
+function initMap(latitude,longitude) {
+  console.log("THIS MAP FUNCTION HAS BEEN CALLED")
+  var myLatLng = {lat: latitude, lng: longitude};
+
+  var map = new google.maps.Map(document.getElementById('map_canvas'), {
+    zoom: 13,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    draggable: true,
+    title: 'SurfSpot Map!'
+  });
+
+  google.maps.event.addListener(marker, 'dragend', function (evt) {
+    document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
+    console.log(marker.getPosition().lng());
+    console.log(marker.getPosition().lat());
+  });
+};
+
 // GOOGLE API
-$(document).on("click", "#location-search", function(){
-    $("#location-value").empty();
+$(document).on("click", "#location-search", function(event){
+    event.preventDefault();
     var search = $("#location-input").val().trim();
+    search = search.split(" ").join("+")
     var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + search + "&key=" + google_api;
-    // ajax call
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response) {
     console.log(response);
     var formatAddress = response.results[0].formatted_address;
-    search = formatAddress;
 
     // grab value from location search input tag & store in var userLocation
-
     // create p tag to hold user location
-    var p = $("<p>");
+    var p = $("#current-location");
+    $("#location-input").val("");
     // add class to p tag
-    p.text(search);
+    p.text("Searching SurfSpot: " + formatAddress);
     // push userLocation value into p tag
-    $("#surf-results").append(p);
+    $("#results").append(p);
+    $("#surf-results").show();
 
 //STORM GLASS API
     var lat = response.results[0].geometry.location.lat;
     var lon = response.results[0].geometry.location.lng;
-    console.log("LAT: " + lat)
-    //var lat = "";
-    //var lon = "";
-
-
-    // $("#lat").on("click", function() {
-    //     lat = prompt("lattitude:")
-
-
-    // });
-
-    // $("#lon").on("click", function() {
-    //     lon = prompt("longitude:")
-    // });
-
-console.log(lat, lon);
+    initMap(lat,lon);
 
     $.ajax({
         //url: 'https://api.stormglass.io/point?lat=58.5&lng=17.8',
@@ -94,8 +105,6 @@ console.log(lat, lon);
                 //console.log(dayOnePrecipitation)
 
 
-
-            dayOneWndDir = CDTD(dayOneWndDir);
                 //console.log("Wind Direction: " ,dayOneWndDir);      
             dayOneWvDir = CDTD(dayOneWvDir);
                 //console.log(dayOneWvDir)
@@ -163,13 +172,10 @@ console.log(lat, lon);
                 //console.log(dayThreeWvDir)
         }
 
-
-
-
-
         }) //end of inner ajax call
     }); // end of first then
 });  // end of on click
+
     function CDTD(x) {
         if (x > 5 && x < 85) {
             x = "NE"
@@ -199,4 +205,4 @@ console.log(lat, lon);
         return x 
     }
 
-    
+
