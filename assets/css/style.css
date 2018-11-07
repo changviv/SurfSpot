@@ -1,0 +1,52 @@
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+body {
+	font-family: 'Mukta', sans-serif;
+	background-image: url("../images/night_wave_bg.jpg");
+	background-color: white;
+	/*background-image: linear-gradient(white , #ccf8ff, #47b2c3);*/
+}
+
+#map_canvas {
+	float:left;
+  height: 50%;
+  width: 100%;
+}
+
+
+.bg-light {
+	background-image: linear-gradient(to bottom right, red, yellow);
+}
+
+.navbar {
+	padding: .5rem 4rem;
+}
+
+.navbar-brand {
+	font-family: 'Poppins', sans-serif;
+	font-size: 3rem;
+  font-weight: bolder;
+  letter-spacing: 0.3rem;
+}
+
+.navbar-light .navbar-brand {
+	color: white;
+}
+
+.jumbotron {
+	background-image: url("../images/just-waves.png");
+	padding: 4rem 4rem;
+}
+
+.container {
+	margin: 0;
+}
+
+.form-inline .form-control {
+	width: 55%;
+}
+
+.btn {
+	width: 10%;
+	border: 1px solid #ced4da;
+}
