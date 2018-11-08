@@ -60,8 +60,8 @@ $(document).on("click", "#location-search", function(event){
         url: "https://api.stormglass.io/point?lat=" + lat + "&lng=" + lon,
         method: "GET",
         // headers: { 'Authorization': "d3cc5276-dd5b-11e8-9e1f-0242ac130004-d3cc5424-dd5b-11e8-9e1f-0242ac130004" }
-        headers: { 'Authorization': "3163bc06-dfac-11e8-83ef-0242ac130004-3163bd00-dfac-11e8-83ef-0242ac130004" }
-        //headers: { 'Authorization': "dd5c9c48-de4f-11e8-9f7a-0242ac130004-dd5c9d4c-de4f-11e8-9f7a-0242ac130004" }
+        // headers: { 'Authorization': "3163bc06-dfac-11e8-83ef-0242ac130004-3163bd00-dfac-11e8-83ef-0242ac130004" }
+        headers: { 'Authorization': "dd5c9c48-de4f-11e8-9f7a-0242ac130004-dd5c9d4c-de4f-11e8-9f7a-0242ac130004" }
     }).then(function(response) {
 
 
@@ -92,13 +92,19 @@ $(document).on("click", "#location-search", function(event){
                 precipitation:dayOne[i].precipitation[1].value,
             };
 
-
         var dayOneDiv = $("<div class='dayone'>");
         dayOneResults = JSON.stringify(dayOneResults);
-
-
-        dayOneDiv.append(dayOneResults);
-        console.log(dayOneDiv)
+        dayOneResults = dayOneResults.replace(/"/g, "");
+        dayOneResults = dayOneResults.replace(/{/g, "");
+        dayOneResults = dayOneResults.replace(/}/g, "");
+            
+        // var hour;
+        // hour++;
+        // function hours(){
+        //     for (var i = 0; )
+        // }
+        dayOneDiv.append("Hour: " +  i + " " + dayOneResults);
+        // console.log(dayOneDiv);
         $("#results").append(dayOneDiv)
 
 
@@ -244,6 +250,16 @@ $(document).on("click", "#location-search", function(event){
         //     return;
         // }
             }
+    
+    var keyConditions = [];
+
+    for (var key in dayOneResults) {
+        keyConditions.push(key);
+    };
+
+    console.log(keyConditions);
+    // $("#results").append(keyConditions);
+
 
 
         }); //end of inner ajax call
