@@ -47,7 +47,7 @@ $(document).on("click", "#location-search", function(event){
     // add class to p tag
     p.text("Searching SurfSpot: " + formatAddress);
     // push userLocation value into p tag
-    $("#results").append(p);
+    $("#current-location").append(p);
     $("#surf-results").show();
 
 //STORM GLASS API
@@ -80,118 +80,171 @@ $(document).on("click", "#location-search", function(event){
 
         for (var i = 0; i < 24; i++) {
 
-            var dayOneAirTmp = dayOne[i].airTemperature[1].value;
-                console.log(dayOneAirTmp)
+            var dayOneResults = {
+                AirTemp: dayOne[i].airTemperature[1].value,
+                WaterTemp: dayOne[i].waterTemperature[1].value,
+                WaveHeight: dayOne[i].waterTemperature[1].value,
+                Visibility: dayOne[i].visibility[1].value,
+                SwellHeight: dayOne[i].swellHeight[1].value,
+                windSpeed: dayOne[i].windSpeed[1].value,
+                windDirection: CDTD(dayOne[i].windDirection[1].value),
+                waveDirection: CDTD(dayOne[i].waveDirection[1].value),
+                precipitation:dayOne[i].precipitation[1].value,
+            };
 
-            var dayOneWtrTmp = dayOne[i].waterTemperature[1].value;
-                console.log(dayOneWtrTmp)
 
-            var dayOneWaveHgt = dayOne[i].swellHeight[1].value;
-                //console.log("Day One Wave HEIGHT: " + dayOneWaveHgt)
+        var dayOneDiv = $("<div class='dayone'>");
+        dayOneResults = JSON.stringify(dayOneResults);
 
 
-            var dayOneVisibility = dayOne[i].visibility[1].value;
-                //console.log("day one Visibility" + dayOneVisibility)
+        dayOneDiv.append(dayOneResults);
+        console.log(dayOneDiv)
+        $("#results").append(dayOneDiv)
 
-            var dayOneWndSpd = dayOne[i].windSpeed[1].value;
-                //console.log("day one Wind SPeed" + dayOneWndSpd)
 
-            var dayOneWndDir = dayOne[i].windDirection[1].value;
-                //console.log(dayOneWndDir)
+        // set you up to do day two and three//
+            var dayTwoResults = {
+                AirTemp: dayTwo[i].airTemperature[1].value,
+                WaterTemp: dayTwo[i].waterTemperature[1].value,
+                WaveHeight: dayTwo[i].waterTemperature[1].value,
+                Visibility: dayTwo[i].visibility[1].value,
+                SwellHeight: dayTwo[i].swellHeight[1].value,
+                windSpeed: dayTwo[i].windSpeed[1].value,
+                windDirection: CDTD(dayTwo[i].windDirection[1].value),
+                waveDirection: CDTD(dayTwo[i].waveDirection[1].value),
+                precipitation:dayTwo[i].precipitation[1].value,
+            };
 
-            var dayOneWvDir = dayOne[i].waveDirection[1].value;
+            var dayThreeResults = {
+                AirTemp: dayThree[i].airTemperature[1].value,
+                WaterTemp: dayThree[i].waterTemperature[1].value,
+                WaveHeight: dayThree[i].waterTemperature[1].value,
+                Visibility: dayThree[i].visibility[1].value,
+                SwellHeight: dayThree[i].swellHeight[1].value,
+                windSpeed: dayThree[i].windSpeed[1].value,
+                windDirection: CDTD(dayThree[i].windDirection[1].value),
+                waveDirection: CDTD(dayThree[i].waveDirection[1].value),
+                precipitation:dayThree[i].precipitation[1].value,
+            };
+
+            dayTwoResults = JSON.stringify(dayTwoResults);
+            dayThreeResults = JSON.stringify(dayThreeResults);
+
+
+            // var dayOneAirTmp = dayOne[i].airTemperature[1].value;
+            //     console.log(dayOneAirTmp)
+
+            // var dayOneWtrTmp = dayOne[i].waterTemperature[1].value;
+            //     console.log(dayOneWtrTmp)
+
+            // var dayOneWaveHgt = dayOne[i].swellHeight[1].value;
+            //     //console.log("Day One Wave HEIGHT: " + dayOneWaveHgt)
+
+
+            // var dayOneVisibility = dayOne[i].visibility[1].value;
+            //     //console.log("day one Visibility" + dayOneVisibility)
+
+            // var dayOneWndSpd = dayOne[i].windSpeed[1].value;
+            //     //console.log("day one Wind SPeed" + dayOneWndSpd)
+
+            // var dayOneWndDir = dayOne[i].windDirection[1].value;
+            //     //console.log(dayOneWndDir)
+
+            // var dayOneWvDir = dayOne[i].waveDirection[1].value;
+            //     //console.log(dayOneWvDir)
+
+            // var dayOnePrecipitation = dayOne[i].precipitation[1].value;
+            //     //console.log(dayOnePrecipitation)
+
+            // dayOneWndDir = CDTD(dayOneWndDir);
+            //     //console.log("Wind Direction: " ,dayOneWndDir);
+            // dayOneWvDir = CDTD(dayOneWvDir);
                 //console.log(dayOneWvDir)
 
-            var dayOnePrecipitation = dayOne[i].precipitation[1].value;
-                //console.log(dayOnePrecipitation)
 
-            dayOneWndDir = CDTD(dayOneWndDir);
-                //console.log("Wind Direction: " ,dayOneWndDir);
-            dayOneWvDir = CDTD(dayOneWvDir);
-                //console.log(dayOneWvDir)
+        //     var dayTwoAirTmp = dayTwo[i].airTemperature[1].value;
+        //         //console.log(dayTwoAirTmp)
 
+        //     var dayTwoWtrTmp = dayTwo[i].waterTemperature[1].value;
+        //         //console.log(dayTwoWtrTmp)
 
-            var dayTwoAirTmp = dayTwo[i].airTemperature[1].value;
-                //console.log(dayTwoAirTmp)
+        //     var dayTwoWaveHgt = dayTwo[i].swellHeight[1].value;
+        //         //console.log("DayyTwo Wave HEIGHT: " + dayTwoWaveHgt)
 
-            var dayTwoWtrTmp = dayTwo[i].waterTemperature[1].value;
-                //console.log(dayTwoWtrTmp)
+        //     var dayTwoVisibility = dayTwo[i].visibility[1].value;
+        //         //console.log("dayyTwo Visibility" + dayTwoVisibility)
 
-            var dayTwoWaveHgt = dayTwo[i].swellHeight[1].value;
-                //console.log("DayyTwo Wave HEIGHT: " + dayTwoWaveHgt)
+        //     var dayTwoWndSpd = dayTwo[i].windSpeed[1].value;
+        //         //console.log("dayyTwo Wind SPeed" + dayTwoWndSpd)
 
-            var dayTwoVisibility = dayTwo[i].visibility[1].value;
-                //console.log("dayyTwo Visibility" + dayTwoVisibility)
+        //     var dayTwoWndDir = dayTwo[i].windDirection[1].value;
+        //         //console.log(dayTwoWndDir)
 
-            var dayTwoWndSpd = dayTwo[i].windSpeed[1].value;
-                //console.log("dayyTwo Wind SPeed" + dayTwoWndSpd)
+        //     var dayTwoWvDir = dayTwo[i].waveDirection[1].value;
+        //         //console.log(dayTwoWvDir)
 
-            var dayTwoWndDir = dayTwo[i].windDirection[1].value;
-                //console.log(dayTwoWndDir)
+        //     var dayTwoPrecipitation = dayTwo[i].precipitation[1].value;
+        //         //console.log(dayTwoPrecipitation)
 
-            var dayTwoWvDir = dayTwo[i].waveDirection[1].value;
-                //console.log(dayTwoWvDir)
+        //     dayTwoWndDir = CDTD(dayTwoWndDir)
+        //         //console.log(dayTwoWndDir)
 
-            var dayTwoPrecipitation = dayTwo[i].precipitation[1].value;
-                //console.log(dayTwoPrecipitation)
-
-            dayTwoWndDir = CDTD(dayTwoWndDir)
-                //console.log(dayTwoWndDir)
-
-            dayTwoWvDir = CDTD(dayTwoWvDir)
-                //console.log(dayTwoWvDir)
+        //     dayTwoWvDir = CDTD(dayTwoWvDir)
+        //         //console.log(dayTwoWvDir)
 
 
-            var dayThreeAirTmp = dayThree[i].airTemperature[1].value;
-                //console.log(dayThreeAirTmp)
+        //     var dayThreeAirTmp = dayThree[i].airTemperature[1].value;
+        //         //console.log(dayThreeAirTmp)
 
-            var dayThreeWtrTmp = dayThree[i].waterTemperature[1].value;
-                //console.log(dayThreeWtrTmp)
+        //     var dayThreeWtrTmp = dayThree[i].waterTemperature[1].value;
+        //         //console.log(dayThreeWtrTmp)
 
-            var dayThreeWaveHgt = dayThree[i].swellHeight[1].value;
-                //console.log("DayyThree Wave HEIGHT: " + dayThreeWaveHgt)
+        //     var dayThreeWaveHgt = dayThree[i].swellHeight[1].value;
+        //         //console.log("DayyThree Wave HEIGHT: " + dayThreeWaveHgt)
 
-            var dayThreeVisibility = dayThree[i].visibility[1].value;
-                //console.log("dayyThree Visibility" + dayThreeVisibility)
+        //     var dayThreeVisibility = dayThree[i].visibility[1].value;
+        //         //console.log("dayyThree Visibility" + dayThreeVisibility)
 
-            var dayThreeWndSpd = dayThree[i].windSpeed[1].value;
-                // console.log("dayyThree Wind SPeed" + dayThreeWndSpd)
+        //     var dayThreeWndSpd = dayThree[i].windSpeed[1].value;
+        //         // console.log("dayyThree Wind SPeed" + dayThreeWndSpd)
 
-            var dayThreeWndDir = dayThree[i].windDirection[1].value;
-                //console.log(dayThreeWndDir)
+        //     var dayThreeWndDir = dayThree[i].windDirection[1].value;
+        //         //console.log(dayThreeWndDir)
 
-            var dayThreeWvDir = dayThree[i].waveDirection[1].value;
-                //console.log(dayThreeWvDir)
+        //     var dayThreeWvDir = dayThree[i].waveDirection[1].value;
+        //         //console.log(dayThreeWvDir)
 
-            var dayThreePrecipitation = dayThree[i].precipitation[1].value;
-                //console.log(dayThreePrecipitation)
+        //     var dayThreePrecipitation = dayThree[i].precipitation[1].value;
+        //         //console.log(dayThreePrecipitation)
 
-            dayThreeWndDir = CDTD(dayThreeWndDir)
-                //console.log(dayThreeWndDir)
+        //     dayThreeWndDir = CDTD(dayThreeWndDir)
+        //         //console.log(dayThreeWndDir)
 
-            dayThreeWvDir = CDTD(dayThreeWvDir)
-                //console.log(dayThreeWvDir)
-        }
+        //     dayThreeWvDir = CDTD(dayThreeWvDir)
+        //         //console.log(dayThreeWvDir)
+        // }
 
-        var day1Arr = [];
-        
-        function conditionsArr(){
-        day1Arr.push("Air Temp: " + dayOneAirTmp + " ℃", dayOneWtrTmp, dayOneWaveHgt, dayOneVisibility, dayOneWndSpd, dayOneWndDir, dayOneWvDir, dayOnePrecipitation);
+        // var day1Arr = [];
 
-        var day1Div = $("<div>");
-        var pDay1 = $("<p>").text("Conditions" + day1Arr);
-        console.log(day1Arr);
+        // function conditionsArr(){
+        // day1Arr.push("Air Temp: " + dayOneAirTmp + " ℃", dayOneWtrTmp, dayOneWaveHgt, dayOneVisibility, dayOneWndSpd, dayOneWndDir, dayOneWvDir, dayOnePrecipitation);
 
-        day1Arr.append(pDay1);
+        // var day1Div = $("<div>");
+        // var pDay1 = $("<p>").text("Conditions" + day1Arr);
+        // console.log(day1Arr);
 
-        $("#results").append(day1Div);
+        // day1Arr.append(pDay1);
 
-        };
+        // $("#results").append(day1Div);
 
-        for (var i = 0; i < day1Arr.length; i++){
-            conditionsArr();
-            return;
-        }
+        // };
+
+        // for (var i = 0; i < day1Arr.length; i++){
+        //     conditionsArr();
+        //     return;
+        // }
+            }
+
 
         }); //end of inner ajax call
     }); // end of first then
