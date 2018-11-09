@@ -49,7 +49,6 @@ function stormGlassSearch(latitude, longitude) {
         // headers: { 'Authorization': stormglass }
         headers: { 'Authorization': stormglassTwo }
         // headers: { 'Authorization': stormglassThree }
-
     }).then(function(response) {
 
         var optimalResponse = response.hours.slice(0,72);
@@ -82,7 +81,7 @@ function stormGlassSearch(latitude, longitude) {
             var dayOneDiv = $("<div class='dayone'>");
             // dayOneResults = JSON.stringify(dayOneResults);
             dayOneResults = Object.values(dayOneResults)
-            dayOneResults = dayOneResults.join(",")
+            dayOneResults = dayOneResults.join("  ")
             console.log(dayOneResults)
 
             dayOneDiv.append(dayOneResults);
