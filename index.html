@@ -10,7 +10,7 @@
 </head>
 <body>
   <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="index.html">
       <img src="assets/images/wave.png" width="60" height="60" class="d-inline-block align-center" alt="">
     SurfSpot
     </a>
@@ -19,7 +19,7 @@
     <h1 class="display-4">Find the best the spot to surf</h1>
     <p class="lead">Search a good surf spot and check for hourly stats!</p>
     <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" id="location-input" placeholder="Santa Cruz Beach, San Cruz, CA" aria-label="Search">
+      <input class="form-control mr-sm-2" type="search" id="location-input" placeholder="Santa Cruz Beach, CA" aria-label="Search">
       <button class="btn btn-warning my-sm-0" type="submit" id='location-search'>Search</button>
     </form>
     <hr class="my-4">
@@ -27,11 +27,13 @@
       <!-- you might need a grid system here -->
       <div class="container">
         <div class="row">
+          <div class="col-8">
           <div class="col">
             <div id="current-location"></div>
             <div id="results"></div>
           </div>
-          <div class="col">
+          <!-- <div class="col-4"> -->
+          <!-- <div class="col"> -->
             <div id="map_canvas"></div>
             <div id="current"></div>
           </div>
