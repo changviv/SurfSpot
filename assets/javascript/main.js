@@ -82,7 +82,7 @@ function stormGlassSearch(latitude, longitude) {
             };
 
             dayOneResults = Object.values(dayOneResults)
-            console.log(dayOneResults)
+            // console.log(dayOneResults)
             // console.log(dayOneResults[0])
             var rowdata = $("<tr>");
 
@@ -91,7 +91,6 @@ function stormGlassSearch(latitude, longitude) {
 
                 tdata.append(dayOneResults[j])
 
-                console.log(tdata)
                 rowdata.append(tdata);
                 $("tbody").append(rowdata)
             }
@@ -154,8 +153,9 @@ function initMap(latitude,longitude) {
 
     var new_lon = marker.getPosition().lng();
     var new_lat = marker.getPosition().lat()
-    // $("#tbody").empty();
+    $("tbody").empty();
     stormGlassSearch(new_lat,new_lon);
+    console.log("STORMGLASS API'd CALLED")
 
     myLatLng = {lat: new_lat, lng: new_lon};
     geocoder.geocode({'location': myLatLng}, function(results, status) {
