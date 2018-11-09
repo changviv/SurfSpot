@@ -34,12 +34,13 @@ body {
 }
 
 .jumbotron {
-	background-image: url("../images/just-waves.png");
+	/*background-image: url("../images/just-waves.png");*/
 	padding: 4rem 4rem;
 }
 
 .container {
 	margin: 0;
+	width: 100%;
 }
 
 .form-inline .form-control {
@@ -49,4 +50,8 @@ body {
 .btn {
 	width: 10%;
 	border: 1px solid #ced4da;
+}
+
+#current-location {
+	font-size: 35px;
 }
