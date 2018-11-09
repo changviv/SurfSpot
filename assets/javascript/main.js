@@ -47,8 +47,11 @@ function stormGlassSearch(latitude, longitude) {
         url: "https://api.stormglass.io/point?lat=" + latitude + "&lng=" + longitude,
         method: "GET",
         // headers: { 'Authorization': stormglass }
-        headers: { 'Authorization': stormglassTwo }
+        // headers: { 'Authorization': stormglassTwo }
         // headers: { 'Authorization': stormglassThree }
+        // headers: { 'Authorization': backup_sg_4 }
+        headers: { 'Authorization': stormFive }
+
     }).then(function(response) {
 
         var optimalResponse = response.hours.slice(0,72);
@@ -78,47 +81,54 @@ function stormGlassSearch(latitude, longitude) {
                 precipitation:dayOne[i].precipitation[1].value,
             };
 
-            var dayOneDiv = $("<div class='dayone'>");
-            // dayOneResults = JSON.stringify(dayOneResults);
             dayOneResults = Object.values(dayOneResults)
-            dayOneResults = dayOneResults.join("  ")
             console.log(dayOneResults)
+            // console.log(dayOneResults[0])
+            var rowdata = $("<tr>");
 
-            dayOneDiv.append(dayOneResults);
-            // console.log(dayOneDiv)
-            $("#results").append(dayOneDiv)
+            for (var j=0; j < dayOneResults.length; j++) {
+                var tdata = $("<td>");
 
+                tdata.append(dayOneResults[j])
+
+                console.log(tdata)
+                rowdata.append(tdata);
+                $("tbody").append(rowdata)
+            }
 
             // set you up to do day two and three//
-            var dayTwoResults = {
-                AirTemp: dayTwo[i].airTemperature[1].value,
-                WaterTemp: dayTwo[i].waterTemperature[1].value,
-                WaveHeight: dayTwo[i].waterTemperature[1].value,
-                Visibility: dayTwo[i].visibility[1].value,
-                SwellHeight: dayTwo[i].swellHeight[1].value,
-                windSpeed: dayTwo[i].windSpeed[1].value,
-                windDirection: CDTD(dayTwo[i].windDirection[1].value),
-                waveDirection: CDTD(dayTwo[i].waveDirection[1].value),
-                precipitation:dayTwo[i].precipitation[1].value,
-            };
+            // var dayTwoResults = {
+            //     AirTemp: dayTwo[i].airTemperature[1].value,
+            //     WaterTemp: dayTwo[i].waterTemperature[1].value,
+            //     WaveHeight: dayTwo[i].waterTemperature[1].value,
+            //     Visibility: dayTwo[i].visibility[1].value,
+            //     SwellHeight: dayTwo[i].swellHeight[1].value,
+            //     windSpeed: dayTwo[i].windSpeed[1].value,
+            //     windDirection: CDTD(dayTwo[i].windDirection[1].value),
+            //     waveDirection: CDTD(dayTwo[i].waveDirection[1].value),
+            //     precipitation:dayTwo[i].precipitation[1].value,
+            // };
 
-            var dayThreeResults = {
-                AirTemp: dayThree[i].airTemperature[1].value,
-                WaterTemp: dayThree[i].waterTemperature[1].value,
-                WaveHeight: dayThree[i].waterTemperature[1].value,
-                Visibility: dayThree[i].visibility[1].value,
-                SwellHeight: dayThree[i].swellHeight[1].value,
-                windSpeed: dayThree[i].windSpeed[1].value,
-                windDirection: CDTD(dayThree[i].windDirection[1].value),
-                waveDirection: CDTD(dayThree[i].waveDirection[1].value),
-                precipitation:dayThree[i].precipitation[1].value,
-            };
+            // var dayThreeResults = {
+            //     AirTemp: dayThree[i].airTemperature[1].value,
+            //     WaterTemp: dayThree[i].waterTemperature[1].value,
+            //     WaveHeight: dayThree[i].waterTemperature[1].value,
+            //     Visibility: dayThree[i].visibility[1].value,
+            //     SwellHeight: dayThree[i].swellHeight[1].value,
+            //     windSpeed: dayThree[i].windSpeed[1].value,
+            //     windDirection: CDTD(dayThree[i].windDirection[1].value),
+            //     waveDirection: CDTD(dayThree[i].waveDirection[1].value),
+            //     precipitation:dayThree[i].precipitation[1].value,
+            // };
 
-            dayTwoResults = JSON.stringify(dayTwoResults);
-            dayThreeResults = JSON.stringify(dayThreeResults);
+            // dayTwoResults = JSON.stringify(dayTwoResults);
+            // dayThreeResults = JSON.stringify(dayThreeResults);
+        //};
+
         };
     })
 };
+
 
 function initMap(latitude,longitude) {
   console.log("THIS MAP FUNCTION HAS BEEN CALLED")
@@ -144,8 +154,8 @@ function initMap(latitude,longitude) {
 
     var new_lon = marker.getPosition().lng();
     var new_lat = marker.getPosition().lat()
-    $("#results").empty();
-    stormGlassSearch(new_lon,new_lat)
+    // $("#tbody").empty();
+    stormGlassSearch(new_lat,new_lon);
 
     myLatLng = {lat: new_lat, lng: new_lon};
     geocoder.geocode({'location': myLatLng}, function(results, status) {

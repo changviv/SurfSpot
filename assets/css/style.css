@@ -8,9 +8,9 @@ body {
 }
 
 #map_canvas {
-	float:left;
-  height: 50%;
+  height: 100%;
   width: 100%;
+  display: inline-block;
 }
 
 
@@ -39,7 +39,9 @@ body {
 }
 
 .container {
+	margin-right: 0px;
 	margin: 0;
+	height: 100%;
 	width: 100%;
 }
 
@@ -48,7 +50,7 @@ body {
 }
 
 .btn {
-	width: 10%;
+	/*width: 10%;*/
 	border: 1px solid #ced4da;
 }
 
