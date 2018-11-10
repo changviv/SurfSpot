@@ -92,10 +92,10 @@ function stormGlassSearch(latitude, longitude) {
             console.log(dayOneResults)
 
 
-            var rowdata = $("<tr>");
+            var rowdata = $("<tr class='rowdata'>");
 
             for (var j=0; j < dayOneResults.length; j++) {
-                var tdata = $("<td>");
+                var tdata = $("<td class='tdata'>");
 
                 tdata.append(dayOneResults[j]);
                 rowdata.append(tdata);
