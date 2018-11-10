@@ -20,7 +20,7 @@
     <h1 class="display-4">Find the best the spot to surf</h1>
     <p class="lead">Search a good surf spot and check for hourly stats!</p>
     <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" id="location-input" placeholder="Bondi Beach, Au" aria-label="Search">
+      <input class="form-control mr-sm-2" type="search" id="location-input" placeholder="Bondi Beach, AU" aria-label="Search">
       <button class="btn btn-warning" type="submit" id='location-search'>Search</button>
     </form>
     <hr class="my-4">
@@ -29,9 +29,8 @@
       <div class="container">
         <div class="row">
           <div class="col-8">
-          <div class="col">
             <div id="current-location"></div>
-            <table id="conditions-table">
+            <table class="table" id="conditions-table">
               <thead>
                 <tr id="conditions-header">
                   <th scope="col" class="conditions">Hour(24 hr)</th>
@@ -46,29 +45,10 @@
                   <th scope="col" class="conditions">Precipitation<br>(kg/m²)</th>
                 </tr>
               </thead>
-                <tr class="data"></tr>
-                  <tr class="data"></tr>
-                  <tr class="data"></tr>
-                  <tr class="data"></tr>
-                  <tr class="data"></tr>
-                  <tr class="data"></tr>
-                  <tr class="data"></tr>
-                  <tr class="data"></tr>
-                  <tr class="data"></tr>
-                  <!-- On cells (`td` or `th`) -->
-              <tr>
-                <td class="data"></td>
-                <td class="data"></td>
-                <td class="data"></td>
-                <td class="data"></td>
-                <td class="data"></td>
-                <td class="data"></td>
-                <td class="data"></td>
-                <td class="data"></td>
-                <td class="data"></td>
-              </tr>
+              <tbody>
+              </tbody>
             </table>
-          </div>
+
           <div class="col-lg-4">
             <div id="map_canvas"></div>
             <div id="current"></div>

@@ -65,10 +65,17 @@ function stormGlassSearch(latitude, longitude) {
         var dayThree = optimalResponse.slice(48,72);
             // console.log("DAYS 3: ", dayThree)
 
+
+        // Loop through all of day 1
         for (var i = 0; i < 24; i++) {
 
+            var date = new Date(dayOne[i].time);
+            date = date.toString()
+            date = date.slice(0,25)
+            console.log(date)
+
             var dayOneResults = {
-                Time: dayOne[i].time.hours,
+                Time: date,
                 AirTemp: dayOne[i].airTemperature[1].value,
                 WaterTemp: dayOne[i].waterTemperature[1].value,
                 WaveHeight: dayOne[i].waveHeight[1].value,
@@ -80,8 +87,34 @@ function stormGlassSearch(latitude, longitude) {
                 precipitation:dayOne[i].precipitation[1].value,
             };
 
+
+            dayOneResults = Object.values(dayOneResults)
+            console.log(dayOneResults)
+
+
+            var rowdata = $("<tr>");
+
+            for (var j=0; j < dayOneResults.length; j++) {
+                var tdata = $("<td>");
+
+                tdata.append(dayOneResults[j]);
+                // tdatatwo.append(dayTwoResults[j]);
+                // tdatathree.append(dayThreeResults[j]);
+                rowdata.append(tdata);
+                $("tbody").append(rowdata)
+            }
+        };
+
+        // Loop through all of day 2
+        for (var i = 0; i < 24; i++) {
+
+            var date = new Date(dayTwo[i].time);
+            date = date.toString()
+            date = date.slice(0,25)
+            console.log(date)
+
             var dayTwoResults = {
-                Time: dayTwo[i].time,
+                Time: date,
                 AirTemp: dayTwo[i].airTemperature[1].value,
                 WaterTemp: dayTwo[i].waterTemperature[1].value,
                 WaveHeight: dayTwo[i].waveHeight[1].value,
@@ -93,8 +126,31 @@ function stormGlassSearch(latitude, longitude) {
                 precipitation:dayTwo[i].precipitation[1].value,
             };
 
+
+            dayTwoResults = Object.values(dayTwoResults)
+            console.log(dayTwoResults)
+
+            var rowdata = $("<tr>");
+
+            for (var j=0; j < dayTwoResults.length; j++) {
+                var tdata = $("<td>");
+
+                tdata.append(dayTwoResults[j]);
+                rowdata.append(tdata);
+                $("tbody").append(rowdata)
+            }
+
+        }
+
+        // Loop through all of day 3
+        for (var i = 0; i < 24; i++) {
+
+            var date = new Date(dayThree[i].time);
+            date = date.toString()
+            date = date.slice(0,25)
+
             var dayThreeResults = {
-                Time: dayTwo[i].time,
+                Time: date,
                 AirTemp: dayThree[i].airTemperature[1].value,
                 WaterTemp: dayThree[i].waterTemperature[1].value,
                 WaveHeight: dayThree[i].waveHeight[1].value,
@@ -106,51 +162,24 @@ function stormGlassSearch(latitude, longitude) {
                 precipitation:dayThree[i].precipitation[1].value,
             };
 
-            dayOneResults = Object.values(dayOneResults)
-            console.log(dayOneResults)
-            // console.log(dayOneResults[0])
-            var rowdata = $("<tr>");
-
-            for (var j=0; j < dayOneResults.length; j++) {
-                var tdata = $("<td>");
-
-                tdata.append(dayOneResults[j])
-
-                console.log(tdata)
-                rowdata.append(tdata);
-                $("tbody").append(rowdata)
-            }
-
-            dayTwoResults = Object.values(dayTwoResults)
-            console.log(dayTwoResults)
-            var rowdata = $("<tr>");
-
-            for (var j=0; j < dayTwoResults.length; j++) {
-                var tdata = $("<td>");
-
-                tdata.append(dayTwoResults[j])
-
-                console.log(tdata)
-                rowdata.append(tdata);
-                $("tbody").append(rowdata)
-            }
-
 
             dayThreeResults = Object.values(dayThreeResults)
             console.log(dayThreeResults)
+
             var rowdata = $("<tr>");
 
             for (var j=0; j < dayThreeResults.length; j++) {
                 var tdata = $("<td>");
 
-                tdata.append(dayThreeResults[j])
-
-                console.log(tdata)
+                tdata.append(dayThreeResults[j]);
+                // tdatatwo.append(dayTwoResults[j]);
+                // tdatathree.append(dayThreeResults[j]);
                 rowdata.append(tdata);
                 $("tbody").append(rowdata)
             }
 
-        };
+        }
+
     })
 };
 
@@ -178,8 +207,8 @@ function initMap(latitude,longitude) {
 
     var new_lon = marker.getPosition().lng();
     var new_lat = marker.getPosition().lat()
-    $("#results").empty();
-    stormGlassSearch(new_lon,new_lat)
+    $("tbody").empty();
+    stormGlassSearch(new_lat,new_lon)
 
     myLatLng = {lat: new_lat, lng: new_lon};
     geocoder.geocode({'location': myLatLng}, function(results, status) {
