@@ -4,10 +4,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>SurfSpot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css"/>
   <link href="https://fonts.googleapis.com/css?family=Mukta|Poppins:900" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+  <link rel="shortcut icon" type="image/png" href="assets/images/wave.png"/>
 </head>
 <body>
   <nav class="navbar navbar-light bg-light">
@@ -20,34 +20,56 @@
     <h1 class="display-4">Find the best the spot to surf</h1>
     <p class="lead">Search a good surf spot and check for hourly stats!</p>
     <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" id="location-input" placeholder="Bondi Beach, AU" aria-label="Search">
+      <input class="form-control mr-sm-2" type="search" id="location-input" placeholder="Bondi Beach, Au" aria-label="Search">
       <button class="btn btn-warning" type="submit" id='location-search'>Search</button>
     </form>
     <hr class="my-4">
     <div id="surf-results">
+      <!-- you might need a grid system here -->
       <div class="container">
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-8">
+          <div class="col">
             <div id="current-location"></div>
-            <!-- <table class="table col-lg-4">
+            <table id="conditions-table">
               <thead>
-                <tr>
-                  <th scope="col">Time</th>
-                  <th scope="col">Temp</th>
-                  <th scope="col">Water Temp</th>
-                  <th scope="col">Wave Height</th>
-                  <th scope="col">Visibility</th>
-                  <th scope="col">Swell Height</th>
-                  <th scope="col">wind Direction</th>
-                  <th scope="col">wave Direction</th>
-                  <th scope="col">precipitation</th>
+                <tr id="conditions-header">
+                  <th scope="col" class="conditions">Hour(24 hr)</th>
+                  <th scope="col" class="conditions">Air Temp(℃)</th>
+                  <th scope="col" class="conditions">Water Temp(℃)</th>
+                  <th scope="col" class="conditions">Wave Height(m)</th>
+                  <th scope="col" class="conditions">Visibility<br>(km)</th>
+                  <th scope="col" class="conditions">Swell Height(m)</th>
+                  <th scope="col" class="conditions">Wind Speed<br>(m/s)</th>
+                  <th scope="col" class="conditions">Wind Direction<br>(NSWE)</th>
+                  <th scope="col" class="conditions">Wave Direction<br>(NSWE)</th>
+                  <th scope="col" class="conditions">Precipitation<br>(kg/m²)</th>
                 </tr>
               </thead>
-              <tbody>
-              </tbody>
-            </table> -->
+                <tr class="data"></tr>
+                  <tr class="data"></tr>
+                  <tr class="data"></tr>
+                  <tr class="data"></tr>
+                  <tr class="data"></tr>
+                  <tr class="data"></tr>
+                  <tr class="data"></tr>
+                  <tr class="data"></tr>
+                  <tr class="data"></tr>
+                  <!-- On cells (`td` or `th`) -->
+              <tr>
+                <td class="data"></td>
+                <td class="data"></td>
+                <td class="data"></td>
+                <td class="data"></td>
+                <td class="data"></td>
+                <td class="data"></td>
+                <td class="data"></td>
+                <td class="data"></td>
+                <td class="data"></td>
+              </tr>
+            </table>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-4">
             <div id="map_canvas"></div>
             <div id="current"></div>
           </div>
@@ -58,8 +80,8 @@
   <script async defer
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqbqiyRQlrICB9lp-O0atY_4sGJ1QlAPI&callback=initMap">
   </script>
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script type='text/javascript' src="assets/javascript/config.js"></script>
-	<script src="assets/javascript/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type='text/javascript' src="assets/javascript/config.js"></script>
+    <script src="assets/javascript/main.js"></script>
 </body>
 </html>

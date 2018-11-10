@@ -48,10 +48,9 @@ function stormGlassSearch(latitude, longitude) {
         method: "GET",
         // headers: { 'Authorization': stormglass }
         // headers: { 'Authorization': stormglassTwo }
-        // headers: { 'Authorization': stormglassThree }
+        headers: { 'Authorization': stormglassThree }
         // headers: { 'Authorization': backup_sg_4 }
-        headers: { 'Authorization': stormFive }
-
+        // headers: { 'Authorization': stormFive }
     }).then(function(response) {
 
         var optimalResponse = response.hours.slice(0,72);
@@ -69,10 +68,10 @@ function stormGlassSearch(latitude, longitude) {
         for (var i = 0; i < 24; i++) {
 
             var dayOneResults = {
-                Time: dayOne[i].time,
+                Time: dayOne[i].time.hours,
                 AirTemp: dayOne[i].airTemperature[1].value,
                 WaterTemp: dayOne[i].waterTemperature[1].value,
-                WaveHeight: dayOne[i].waterTemperature[1].value,
+                WaveHeight: dayOne[i].waveHeight[1].value,
                 Visibility: dayOne[i].visibility[1].value,
                 SwellHeight: dayOne[i].swellHeight[1].value,
                 windSpeed: dayOne[i].windSpeed[1].value,
@@ -81,8 +80,34 @@ function stormGlassSearch(latitude, longitude) {
                 precipitation:dayOne[i].precipitation[1].value,
             };
 
+            var dayTwoResults = {
+                Time: dayTwo[i].time,
+                AirTemp: dayTwo[i].airTemperature[1].value,
+                WaterTemp: dayTwo[i].waterTemperature[1].value,
+                WaveHeight: dayTwo[i].waveHeight[1].value,
+                Visibility: dayTwo[i].visibility[1].value,
+                SwellHeight: dayTwo[i].swellHeight[1].value,
+                windSpeed: dayTwo[i].windSpeed[1].value,
+                windDirection: CDTD(dayTwo[i].windDirection[1].value),
+                waveDirection: CDTD(dayTwo[i].waveDirection[1].value),
+                precipitation:dayTwo[i].precipitation[1].value,
+            };
+
+            var dayThreeResults = {
+                Time: dayTwo[i].time,
+                AirTemp: dayThree[i].airTemperature[1].value,
+                WaterTemp: dayThree[i].waterTemperature[1].value,
+                WaveHeight: dayThree[i].waveHeight[1].value,
+                Visibility: dayThree[i].visibility[1].value,
+                SwellHeight: dayThree[i].swellHeight[1].value,
+                windSpeed: dayThree[i].windSpeed[1].value,
+                windDirection: CDTD(dayThree[i].windDirection[1].value),
+                waveDirection: CDTD(dayThree[i].waveDirection[1].value),
+                precipitation:dayThree[i].precipitation[1].value,
+            };
+
             dayOneResults = Object.values(dayOneResults)
-            // console.log(dayOneResults)
+            console.log(dayOneResults)
             // console.log(dayOneResults[0])
             var rowdata = $("<tr>");
 
@@ -91,43 +116,43 @@ function stormGlassSearch(latitude, longitude) {
 
                 tdata.append(dayOneResults[j])
 
+                console.log(tdata)
                 rowdata.append(tdata);
                 $("tbody").append(rowdata)
             }
 
-            // set you up to do day two and three//
-            // var dayTwoResults = {
-            //     AirTemp: dayTwo[i].airTemperature[1].value,
-            //     WaterTemp: dayTwo[i].waterTemperature[1].value,
-            //     WaveHeight: dayTwo[i].waterTemperature[1].value,
-            //     Visibility: dayTwo[i].visibility[1].value,
-            //     SwellHeight: dayTwo[i].swellHeight[1].value,
-            //     windSpeed: dayTwo[i].windSpeed[1].value,
-            //     windDirection: CDTD(dayTwo[i].windDirection[1].value),
-            //     waveDirection: CDTD(dayTwo[i].waveDirection[1].value),
-            //     precipitation:dayTwo[i].precipitation[1].value,
-            // };
+            dayTwoResults = Object.values(dayTwoResults)
+            console.log(dayTwoResults)
+            var rowdata = $("<tr>");
 
-            // var dayThreeResults = {
-            //     AirTemp: dayThree[i].airTemperature[1].value,
-            //     WaterTemp: dayThree[i].waterTemperature[1].value,
-            //     WaveHeight: dayThree[i].waterTemperature[1].value,
-            //     Visibility: dayThree[i].visibility[1].value,
-            //     SwellHeight: dayThree[i].swellHeight[1].value,
-            //     windSpeed: dayThree[i].windSpeed[1].value,
-            //     windDirection: CDTD(dayThree[i].windDirection[1].value),
-            //     waveDirection: CDTD(dayThree[i].waveDirection[1].value),
-            //     precipitation:dayThree[i].precipitation[1].value,
-            // };
+            for (var j=0; j < dayTwoResults.length; j++) {
+                var tdata = $("<td>");
 
-            // dayTwoResults = JSON.stringify(dayTwoResults);
-            // dayThreeResults = JSON.stringify(dayThreeResults);
-        //};
+                tdata.append(dayTwoResults[j])
+
+                console.log(tdata)
+                rowdata.append(tdata);
+                $("tbody").append(rowdata)
+            }
+
+
+            dayThreeResults = Object.values(dayThreeResults)
+            console.log(dayThreeResults)
+            var rowdata = $("<tr>");
+
+            for (var j=0; j < dayThreeResults.length; j++) {
+                var tdata = $("<td>");
+
+                tdata.append(dayThreeResults[j])
+
+                console.log(tdata)
+                rowdata.append(tdata);
+                $("tbody").append(rowdata)
+            }
 
         };
     })
 };
-
 
 function initMap(latitude,longitude) {
   console.log("THIS MAP FUNCTION HAS BEEN CALLED")
@@ -153,9 +178,8 @@ function initMap(latitude,longitude) {
 
     var new_lon = marker.getPosition().lng();
     var new_lat = marker.getPosition().lat()
-    $("tbody").empty();
-    stormGlassSearch(new_lat,new_lon);
-    console.log("STORMGLASS API'd CALLED")
+    $("#results").empty();
+    stormGlassSearch(new_lon,new_lat)
 
     myLatLng = {lat: new_lat, lng: new_lon};
     geocoder.geocode({'location': myLatLng}, function(results, status) {
@@ -200,4 +224,3 @@ function CDTD(x) {
 }
 
 };
-

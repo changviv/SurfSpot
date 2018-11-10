@@ -8,9 +8,9 @@ body {
 }
 
 #map_canvas {
-  height: 100%;
+	float:left;
+  height: 50%;
   width: 100%;
-  display: inline-block;
 }
 
 
@@ -39,9 +39,7 @@ body {
 }
 
 .container {
-	margin-right: 0px;
 	margin: 0;
-	height: 100%;
 	width: 100%;
 }
 
@@ -50,10 +48,27 @@ body {
 }
 
 .btn {
-	/*width: 10%;*/
 	border: 1px solid #ced4da;
 }
 
 #current-location {
 	font-size: 35px;
+}
+
+thead {
+	padding: 10px;
+
+}
+
+.conditions {
+	border-collapse: collapse;
+  padding-right: 48px;
+}
+
+.class {
+	margin: auto;
+}
+
+#conditions-table {
+	text-align: left;
 }
