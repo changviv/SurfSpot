@@ -17,7 +17,9 @@ body {
 
 
 .bg-light {
-	background-image: linear-gradient(to bottom right, red, yellow);
+	/*background-image: linear-gradient(to bottom right, red, yellow);*/
+	background-image: url(../images/giphy.gif);
+	/*background-repeat: repeat-x;*/
 }
 
 .navbar {
@@ -36,8 +38,10 @@ body {
 }
 
 .jumbotron {
-	background-color: #f1e5ab;
+	background:rgba(255,255,255,0.5);
 	padding: 4rem 4rem;
+	color: rgba(255,255,255,0.5);
+	/*text-shadow: 2px 2px teal;*/
 }
 
 
@@ -54,13 +58,50 @@ body {
 	margin: 5px;
 }
 
+.table {
+	background-color: antiquewhite;
+}
+
+.display-4, .lead {
+	text-shadow: 2px 2px teal;
+}
+
 thead {
 	padding: 10px;
 
 }
 
-#conditions-table {
+.conditions {
 	border-collapse: collapse;
 	text-align: left;
   /*padding-right: 48px;*/
+  background-color: antiquewhite;
+
+
+}
+
+tbody {
+	border-style: solid;
+	margin-right: 25px;
+	background
+}
+​
+.rdata {
+	padding: 1px;
+	margin-right: 25px;
+	background-color: antiquewhite;
+
+
+}
+​
+.tdata {
+
+	font-size: 70%;
+	padding: 1px;
+	margin-right: 25px;
+
+	/*text-shadow: 2px 2px teal;*/
+
+	background-color: antiquewhite;
+
 }
