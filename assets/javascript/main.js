@@ -17,7 +17,7 @@ $(document).on("click", "#location-search", function(event){
 
 function googleSearch(search) {
     // empty the div so that it doesn't append old results
-    $("#results").empty();
+    $("tbody").empty();
     // split the search by spaces and join them with plus signs in between
     search = search.split(" ").join("+")
     // make variable of the query search URL
@@ -48,9 +48,9 @@ function stormGlassSearch(latitude, longitude) {
         method: "GET",
         // headers: { 'Authorization': stormglass }
         // headers: { 'Authorization': stormglassTwo }
-        headers: { 'Authorization': stormglassThree }
+        // headers: { 'Authorization': stormglassThree }
         // headers: { 'Authorization': backup_sg_4 }
-        // headers: { 'Authorization': stormFive }
+        headers: { 'Authorization': stormFive }
     }).then(function(response) {
 
         var optimalResponse = response.hours.slice(0,72);
@@ -98,8 +98,6 @@ function stormGlassSearch(latitude, longitude) {
                 var tdata = $("<td>");
 
                 tdata.append(dayOneResults[j]);
-                // tdatatwo.append(dayTwoResults[j]);
-                // tdatathree.append(dayThreeResults[j]);
                 rowdata.append(tdata);
                 $("tbody").append(rowdata)
             }
@@ -164,7 +162,6 @@ function stormGlassSearch(latitude, longitude) {
 
 
             dayThreeResults = Object.values(dayThreeResults)
-            console.log(dayThreeResults)
 
             var rowdata = $("<tr>");
 
@@ -172,8 +169,7 @@ function stormGlassSearch(latitude, longitude) {
                 var tdata = $("<td>");
 
                 tdata.append(dayThreeResults[j]);
-                // tdatatwo.append(dayTwoResults[j]);
-                // tdatathree.append(dayThreeResults[j]);
+
                 rowdata.append(tdata);
                 $("tbody").append(rowdata)
             }
@@ -203,7 +199,7 @@ function initMap(latitude,longitude) {
   });
 
   google.maps.event.addListener(marker, 'dragend', function (evt) {
-    document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
+    // document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
 
     var new_lon = marker.getPosition().lng();
     var new_lat = marker.getPosition().lat()

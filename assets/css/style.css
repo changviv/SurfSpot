@@ -8,9 +8,11 @@ body {
 }
 
 #map_canvas {
-	float:left;
-  height: 50%;
-  width: 100%;
+	position: absolute;
+	top:0;
+	right:0;
+  height: 5%;
+  width: 75%;
 }
 
 
@@ -34,14 +36,10 @@ body {
 }
 
 .jumbotron {
-	/*background-image: url("../images/just-waves.png");*/
+	background-color: #f1e5ab;
 	padding: 4rem 4rem;
 }
 
-.container {
-	margin: 0;
-	width: 100%;
-}
 
 .form-inline .form-control {
 	width: 55%;
@@ -53,6 +51,7 @@ body {
 
 #current-location {
 	font-size: 35px;
+	margin: 5px;
 }
 
 thead {
@@ -60,15 +59,8 @@ thead {
 
 }
 
-.conditions {
-	border-collapse: collapse;
-  padding-right: 48px;
-}
-
-.class {
-	margin: auto;
-}
-
 #conditions-table {
+	border-collapse: collapse;
 	text-align: left;
+  /*padding-right: 48px;*/
 }
